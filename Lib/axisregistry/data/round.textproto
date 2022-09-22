@@ -1,12 +1,16 @@
 # SOFT based on internal project
 tag: "ROND"
 display_name: "Round"
-min_value: 0
+min_value: -100
 max_value: 100
 default_value: 0
 precision: 0
 fallback {
   name: "Sharp"
+  value: 0
+}
+fallback {
+  name: "Default"
   value: 0
 }
 fallback {
