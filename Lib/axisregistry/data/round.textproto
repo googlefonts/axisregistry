@@ -7,7 +7,7 @@ default_value: 0
 precision: 0
 fallback {
   name: "Sharp"
-  value: 0
+  value: -100
 }
 fallback {
   name: "Default"
