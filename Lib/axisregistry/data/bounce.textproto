@@ -1,23 +1,15 @@
 tag: "BNCE"
 display_name: "Bounce"
 min_value: -100
-max_value: 100
 default_value: 0
+max_value: 100
 precision: -1
 fallback {
-  name: "Normal"
+  name: "Default"
   value: 0
-}
-fallback {
-  name: "SemiBouncy"
-  value: 50
-}
-fallback {
-  name: "Bouncy"
-  value: 100
 }
 fallback_only: false
 description:
-  "Translate glyphs up and down along the y axis to result in an "
-  "uneven, bouncy baseline. The negative range, if used, should reflect 
-  "positive translations to provide an animatable axis."
+  "Shift glyphs up and down in the Y dimension, resulting in an "
+  "uneven, bouncy baseline. The negative range, if used, should reflect "
+  "opposite shifts to the positive range, to enable looping animation."
