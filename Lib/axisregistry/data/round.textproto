@@ -1,21 +1,13 @@
 # SOFT based on internal project
 tag: "ROND"
 display_name: "Round"
-min_value: -100
+min_value: 0
 max_value: 100
 default_value: 0
 precision: 0
 fallback {
-  name: "Sharp"
-  value: -100
-}
-fallback {
   name: "Default"
   value: 0
-}
-fallback {
-  name: "Round"
-  value: 100
 }
 fallback_only: false
 illustration_url: "round.svg"
