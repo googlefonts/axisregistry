@@ -1,17 +1,14 @@
 # ROND based on internal project
 tag: "ROND"
-display_name: "Round"
+display_name: "Roundness"
 min_value: 0
-max_value: 100
 default_value: 0
+max_value: 100
 precision: 0
 fallback {
   name: "Default"
   value: 0
 }
 fallback_only: false
-illustration_url: "round.svg"
 description:
-  "Adjust terminals to become more and more rounded."
-  "Instances represent variations from square terminals to round terminals"
-  "of the diameter of the local stem in percent of change." 
+  "Adjust shapes from square to increasingly rounded forms."
