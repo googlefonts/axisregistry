@@ -1,0 +1,17 @@
+tag: "SPAC"
+display_name: "Spacing"
+min_value: -100
+max_value: 100
+default_value: 0
+precision: -1
+fallback {
+  name: "Normal"
+  value: 0
+}
+fallback_only: false
+description:
+  "Adjusts the overall letter spacing of a font."
+  " Negative values bring letters closer together,"
+  " while positive values move them apart. The range"
+  " is a percentage change from the family’s default"
+  " spacing, so the default value is 0."
