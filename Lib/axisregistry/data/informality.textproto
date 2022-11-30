@@ -11,7 +11,6 @@ fallback {
 }
 fallback_only: false
 description:
-  "Adjust overall glyph shaping and design from traditional to inventive. "
-  "Intended especially for fonts which seek to provide a stylistic range "
-  "from highly readable to highly expressive."
-
+  "Adjusts overall design and glyph shapes, providing a stylistic change"
+  " from formal and traditional (0%) to informal and unconventional"
+  " (up to 100%)."
