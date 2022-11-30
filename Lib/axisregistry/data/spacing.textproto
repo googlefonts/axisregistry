@@ -1,3 +1,4 @@
+# SPAC based on https://github.com/gferreira/roboto-flex-spac
 tag: "SPAC"
 display_name: "Spacing"
 min_value: -100.0
@@ -5,7 +6,7 @@ max_value: 100.0
 default_value: 0.0
 precision: -1
 fallback {
-  name: "Default"
+  name: "Normal"
   value: 0
 }
 fallback_only: false
