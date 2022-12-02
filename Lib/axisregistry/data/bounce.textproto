@@ -11,6 +11,5 @@ fallback {
 }
 fallback_only: false
 description:
-  "Shift glyphs up and down in the Y dimension, resulting in an "
-  "uneven, bouncy baseline. The negative range, if used, should reflect "
-  "opposite shifts to the positive range, to enable looping animation."
+  "Shift glyphs up and down in the Y dimension, resulting "
+  "in an uneven, bouncy baseline."
