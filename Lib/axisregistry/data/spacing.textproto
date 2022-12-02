@@ -2,8 +2,8 @@
 tag: "SPAC"
 display_name: "Spacing"
 min_value: -100.0
-max_value: 100.0
 default_value: 0.0
+max_value: 100.0
 precision: -1
 fallback {
   name: "Default"
@@ -11,8 +11,6 @@ fallback {
 }
 fallback_only: false
 description:
-  "Adjusts the overall letter spacing of a font."
-  " Negative values bring letters closer together,"
-  " while positive values move them apart. The range"
-  " is a percentage change from the family’s default"
-  " spacing, so the default value is 0."
+  "Adjusts the overall letter spacing of a font. "
+  "The range is a relative percentage change from "
+  the family’s default spacing, so the default value is 0."
