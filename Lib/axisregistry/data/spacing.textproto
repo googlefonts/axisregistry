@@ -13,4 +13,4 @@ fallback_only: false
 description:
   "Adjusts the overall letter spacing of a font. "
   "The range is a relative percentage change from "
-  the family’s default spacing, so the default value is 0."
+  "the family’s default spacing, so the default value is 0."
