@@ -11,6 +11,5 @@ fallback {
 }
 fallback_only: false
 description:
-  "Adjusts overall design and glyph shapes, providing a stylistic change"
-  " from formal and traditional (0%) to informal and unconventional"
-  " (up to 100%)."
+  "Adjusts overall design from formal and traditional (0%)"
+  " to informal and unconventional (up to 100%)."
