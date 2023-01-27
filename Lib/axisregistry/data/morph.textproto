@@ -11,7 +11,6 @@ fallback {
 }
 fallback_only: false
 description:
-  "As the Morph axis progresses, with units in seconds, letterforms"
-  " mutate — changing in unconventional ways that don't alter"
-  " other attributes, like width or weight"
-  
+  "Letterforms morph: Changing in unconventional ways,"
+  " that don't alter other attributes, like width or weight."
+  " The range from 0 to 60 can be understood as seconds."
