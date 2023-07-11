@@ -101,9 +101,15 @@ class AxisRegistry:
                 log.warn(f"Axis {axis} not found in GF Axis Registry!")
                 continue
             if axis == "opsz":
-                opsz_sizes = green_dot(axes_in_font[axis]["min"], axes_in_font[axis]["max"])
+                opsz_sizes = green_dot(
+                    axes_in_font[axis]["min"], axes_in_font[axis]["max"]
+                )
                 # add min and max (Rosa request)
-                opsz_sizes += [axes_in_font[axis]["min"]] + opsz_sizes + [axes_in_font[axis]["max"]]
+                opsz_sizes += (
+                    [axes_in_font[axis]["min"]]
+                    + opsz_sizes
+                    + [axes_in_font[axis]["max"]]
+                )
             else:
                 opsz_sizes = []
             for fallback in self[axis].fallback:
