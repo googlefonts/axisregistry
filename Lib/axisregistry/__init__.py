@@ -358,24 +358,7 @@ def build_fvar_instances(ttFont, axis_dflts={}):
     name_table = ttFont["name"]
     style_name = name_table.getBestSubFamilyName()
 
-    # Protect name IDs which are shared with the STAT table
-    stat_nameids = []
-    if "STAT" in ttFont:
-        if ttFont["STAT"].table.AxisValueCount > 0:
-            stat_nameids.extend(
-                av.ValueNameID for av in ttFont["STAT"].table.AxisValueArray.AxisValue
-            )
-        if ttFont["STAT"].table.DesignAxisCount > 0:
-            stat_nameids.extend(
-                av.AxisNameID for av in ttFont["STAT"].table.DesignAxisRecord.Axis
-            )
-
-    # rm old fvar subfamily and ps name records
-    for inst in fvar.instances:
-        if inst.subfamilyNameID not in [2, 17] + stat_nameids:
-            name_table.removeNames(nameID=inst.subfamilyNameID)
-        if inst.postscriptNameID not in [65535, 6]:
-            name_table.removeNames(nameID=inst.postscriptNameID)
+    name_table.removeUnusedNames(ttFont)
 
     fvar_dflts = _fvar_dflts(ttFont)
     if not axis_dflts:
@@ -398,12 +381,15 @@ def build_fvar_instances(ttFont, axis_dflts={}):
 
     ital_axis = next((a for a in fvar.axes if a.axisTag == "ital"), None)
     slnt_axis = next((a for a in fvar.axes if a.axisTag == "slnt"), None)
+    opsz_axis = next((a for a in fvar.axes if a.axisTag == "opsz"), None)
 
     def gen_instances(is_italic):
         results = []
         for fallback in wght_fallbacks:
             name = fallback.name if not is_italic else f"{fallback.name} Italic".strip()
             name = name.replace("Regular Italic", "Italic")
+            if opsz_axis:
+                name = f"{int(opsz_axis.defaultValue)}pt {name}"
 
             coordinates = {k: v for k, v in axis_dflts.items()}
             if "wght" in fvar_dflts:
