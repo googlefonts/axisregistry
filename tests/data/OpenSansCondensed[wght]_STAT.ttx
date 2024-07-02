@@ -33,19 +33,19 @@
   <AxisValue index="0" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="270"/>  <!-- Thin -->
+    <ValueNameID value="258"/>  <!-- Thin -->
     <Value value="100.0"/>
   </AxisValue>
   <AxisValue index="1" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="283"/>  <!-- ExtraLight -->
+    <ValueNameID value="271"/>  <!-- ExtraLight -->
     <Value value="200.0"/>
   </AxisValue>
   <AxisValue index="2" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="272"/>  <!-- Light -->
+    <ValueNameID value="259"/>  <!-- Light -->
     <Value value="300.0"/>
   </AxisValue>
   <AxisValue index="3" Format="3">
@@ -58,25 +58,25 @@
   <AxisValue index="4" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="286"/>  <!-- Medium -->
+    <ValueNameID value="274"/>  <!-- Medium -->
     <Value value="500.0"/>
   </AxisValue>
   <AxisValue index="5" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="275"/>  <!-- SemiBold -->
+    <ValueNameID value="261"/>  <!-- SemiBold -->
     <Value value="600.0"/>
   </AxisValue>
   <AxisValue index="6" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="276"/>  <!-- Bold -->
+    <ValueNameID value="262"/>  <!-- Bold -->
     <Value value="700.0"/>
   </AxisValue>
   <AxisValue index="7" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="277"/>  <!-- ExtraBold -->
+    <ValueNameID value="263"/>  <!-- ExtraBold -->
     <Value value="800.0"/>
   </AxisValue>
   <AxisValue index="8" Format="1">

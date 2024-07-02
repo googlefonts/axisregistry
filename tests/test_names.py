@@ -210,7 +210,7 @@ def _test_names(ttFont, expected):
                 (6, 3, 1, 0x409): "OpenSans-Regular",
                 (16, 3, 1, 0x409): None,
                 (17, 3, 1, 0x409): None,
-                (25, 3, 1, 0x409): "OpenSans",
+                (25, 3, 1, 0x409): "OpenSansRoman",
             },
         ),
         # Open Sans Italic
@@ -244,7 +244,7 @@ def _test_names(ttFont, expected):
                 (6, 3, 1, 0x409): "OpenSansCondensed-Regular",
                 (16, 3, 1, 0x409): None,
                 (17, 3, 1, 0x409): None,
-                (25, 3, 1, 0x409): "OpenSansCondensed",
+                (25, 3, 1, 0x409): "OpenSansCondensedRoman",
             },
         ),
         # Open Sans Cond Italic
@@ -303,13 +303,11 @@ def _test_names(ttFont, expected):
             None,
             [],
             {
-                (1, 3, 1, 0x409): "Playfair SemiExpanded Light",
+                (1, 3, 1, 0x409): "Playfair",
                 (2, 3, 1, 0x409): "Regular",
-                (3, 3, 1, 0x409): "2.000;FTH;Playfair-SemiExpandedLight",
-                (4, 3, 1, 0x409): "Playfair SemiExpanded Light",
-                (6, 3, 1, 0x409): "Playfair-SemiExpandedLight",
-                (16, 3, 1, 0x409): "Playfair",
-                (17, 3, 1, 0x409): "SemiExpanded Light",
+                (3, 3, 1, 0x409): "2.000;FTH;Playfair-Regular",
+                (4, 3, 1, 0x409): "Playfair Regular",
+                (6, 3, 1, 0x409): "Playfair-Regular",
             },
         ),
     ],
@@ -501,10 +499,10 @@ def test_stat(fp, sibling_fps):
     build_stat(font, siblings)
     stat_fp = fp.replace(".ttf", "_STAT.ttx")
 
-    ## output good files
+    # # output good files
     # with open(stat_fp, "w") as doc:
-    #    got = dump(font["STAT"], font)
-    #    doc.write(got)
+    #     got = dump(font["STAT"], font)
+    #     doc.write(got)
 
     with open(stat_fp) as doc:
         expected = doc.read()
@@ -565,12 +563,12 @@ def test_fvar_instance_collisions(fp, sibling_fps, result):
 @pytest.mark.parametrize(
     "fp, result",
     [
-        (roboto_flex_fp, "RobotoFlex"),
-        (opensans_roman_fp, "OpenSans"),
+        (roboto_flex_fp, "RobotoFlexRoman"),
+        (opensans_roman_fp, "OpenSansRoman"),
         (opensans_italic_fp, "OpenSansItalic"),
-        (opensans_cond_roman_fp, "OpenSansCondensed"),
+        (opensans_cond_roman_fp, "OpenSansCondensedRoman"),
         (opensans_cond_italic_fp, "OpenSansCondensedItalic"),
-        (wonky_fp, "Wonky"),
+        (wonky_fp, "WonkyRoman"),
     ],
 )
 def test_build_variations_ps_name(fp, result):
