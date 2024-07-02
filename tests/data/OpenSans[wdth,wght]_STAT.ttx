@@ -41,7 +41,7 @@
   <AxisValue index="2" Format="1">
     <AxisIndex value="0"/>
     <Flags value="0"/>
-    <ValueNameID value="280"/>  <!-- Medium -->
+    <ValueNameID value="283"/>  <!-- Medium -->
     <Value value="500.0"/>
   </AxisValue>
   <AxisValue index="3" Format="1">
@@ -65,19 +65,19 @@
   <AxisValue index="6" Format="1">
     <AxisIndex value="1"/>
     <Flags value="0"/>
-    <ValueNameID value="281"/>  <!-- Condensed -->
+    <ValueNameID value="280"/>  <!-- Condensed -->
     <Value value="75.0"/>
   </AxisValue>
   <AxisValue index="7" Format="1">
     <AxisIndex value="1"/>
     <Flags value="0"/>
-    <ValueNameID value="282"/>  <!-- SemiCondensed -->
+    <ValueNameID value="281"/>  <!-- SemiCondensed -->
     <Value value="87.5"/>
   </AxisValue>
   <AxisValue index="8" Format="1">
     <AxisIndex value="1"/>
     <Flags value="2"/>  <!-- ElidableAxisValueName -->
-    <ValueNameID value="283"/>  <!-- Normal -->
+    <ValueNameID value="282"/>  <!-- Normal -->
     <Value value="100.0"/>
   </AxisValue>
   <AxisValue index="9" Format="3">

@@ -18,7 +18,7 @@
   <AxisValue index="0" Format="1">
     <AxisIndex value="0"/>
     <Flags value="2"/>  <!-- ElidableAxisValueName -->
-    <ValueNameID value="267"/>  <!-- Default -->
+    <ValueNameID value="268"/>  <!-- Default -->
     <Value value="0.0"/>
   </AxisValue>
   <AxisValue index="1" Format="1">

@@ -179,26 +179,7 @@ def build_stat(ttFont, sibling_ttFonts=[]):
     fvar = ttFont["fvar"]
 
     # rm old STAT table and associated name table records
-    fvar_instance_nameids = set(i.subfamilyNameID for i in fvar.instances)
-    fvar_axis_nameids = set(a.axisNameID for a in fvar.axes)
-    fvar_nameids = fvar_axis_nameids | fvar_instance_nameids
-    # These NameIDs are required for applications to work correctly so
-    # they cannot be deleted.
-    # https://learn.microsoft.com/en-us/typography/opentype/spec/name
-    keep_nameids = set(range(26)) | fvar_nameids
-    if "STAT" in ttFont:
-        stat = ttFont["STAT"]
-        if stat.table.AxisValueCount > 0:
-            axis_values = stat.table.AxisValueArray.AxisValue
-            for ax in axis_values:
-                if ax.ValueNameID not in keep_nameids:
-                    nametable.removeNames(nameID=ax.ValueNameID)
-        if stat.table.DesignAxisCount > 0:
-            axes = stat.table.DesignAxisRecord.Axis
-            for ax in axes:
-                if ax.AxisNameID not in keep_nameids:
-                    nametable.removeNames(nameID=ax.AxisNameID)
-        del ttFont["STAT"]
+    # ttFont["name"].removeUnusedNames(ttFont)
 
     res = []
     # use fontTools build_stat. Link contains function params and usage example
@@ -309,6 +290,14 @@ def build_vf_name_table(ttFont, family_name, siblings=[], aggressive=True):
     # VF name table should reflect the 0 origin of the font!
     assert is_variable(ttFont), "Not a VF!"
     style_name = _vf_style_name(ttFont, family_name)
+    # 2024-07-02: We've stopped requiring a VF nametable to reflect the origin
+    # master. We're now setting the name table to either be Regular or Italic.
+    # This approach matches what Adobe Source Sans does. It should fix
+    # the font naming issues in Win MS Word.
+    if "Italic" in style_name:
+        style_name = "Italic"
+    else:
+        style_name = "Regular"
     if _fvar_instance_collisions(ttFont, siblings):
         build_static_name_table_v1(
             ttFont, family_name, style_name, aggressive=aggressive
@@ -322,17 +311,9 @@ def build_variations_ps_name(ttFont, family_name=None):
     assert is_variable(ttFont), "Not a VF!"
     if not family_name:
         family_name = ttFont["name"].getBestFamilyName()
-    font_styles = axis_registry.fallbacks_in_name_table(ttFont)
-    if font_styles:
-        vf_ps = family_name.replace(" ", "") + "".join(
-            [
-                fallback.name
-                for _, fallback in font_styles
-                if fallback.name not in family_name
-            ]
-        )
-    else:
-        vf_ps = family_name.replace(" ", "")
+    suffix = "Italic" if "Italic" in ttFont["name"].getBestSubFamilyName() else "Roman"
+
+    vf_ps = f"{family_name}{suffix}".replace(" ", "")
     ttFont["name"].setName(vf_ps, NameID.VARIATIONS_POSTSCRIPT_NAME_PREFIX, 3, 1, 0x409)
 
 
@@ -368,24 +349,7 @@ def build_fvar_instances(ttFont, axis_dflts={}):
     name_table = ttFont["name"]
     style_name = name_table.getBestSubFamilyName()
 
-    # Protect name IDs which are shared with the STAT table
-    stat_nameids = []
-    if "STAT" in ttFont:
-        if ttFont["STAT"].table.AxisValueCount > 0:
-            stat_nameids.extend(
-                av.ValueNameID for av in ttFont["STAT"].table.AxisValueArray.AxisValue
-            )
-        if ttFont["STAT"].table.DesignAxisCount > 0:
-            stat_nameids.extend(
-                av.AxisNameID for av in ttFont["STAT"].table.DesignAxisRecord.Axis
-            )
-
-    # rm old fvar subfamily and ps name records
-    for inst in fvar.instances:
-        if inst.subfamilyNameID not in [2, 17] + stat_nameids:
-            name_table.removeNames(nameID=inst.subfamilyNameID)
-        if inst.postscriptNameID not in [65535, 6]:
-            name_table.removeNames(nameID=inst.postscriptNameID)
+    # ttFont["name"].removeUnusedNames(ttFont)
 
     fvar_dflts = _fvar_dflts(ttFont)
     if not axis_dflts:
