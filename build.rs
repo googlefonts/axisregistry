@@ -18,8 +18,12 @@ fn main() {
     let descriptor = protobuf::reflect::FileDescriptor::new_dynamic(protofile.clone(), &[])
         .expect("Could not create descriptor");
 
-    // Now we use the prost crate to compile them, so that we can
-    // generate Rust structs.
+    // Now we use protox + prost-build for pure Rust compilation (no protoc needed)
+    let file_descriptors = protox::compile(
+        ["Lib/axisregistry/axes.proto"],
+        ["Lib/axisregistry"]
+    ).expect("Could not compile axes.proto with protox");
+
     let mut config = prost_build::Config::new();
     // config.boxed(".google.axes.LanguageProto.sample_text");
     // config.boxed(".google.axes.LanguageProto.exemplar_chars");
@@ -34,8 +38,8 @@ fn main() {
     }
     // Let's make our structs; this produces google.axes.rs
     config
-        .compile_protos(&["Lib/axisregistry/axes.proto"], &["Lib/axisregistry/"])
-        .expect("Could not compile axes.proto");
+        .compile_fds(file_descriptors)
+        .expect("Could not compile proto file_descriptors");
 
     let path = Path::new(&env::var("OUT_DIR").unwrap()).join("data.rs");
     let mut file = BufWriter::new(File::create(path).unwrap());
