@@ -2,10 +2,11 @@ use gf_metadata::{AxisProto, FallbackProto};
 use std::{collections::HashSet, ops::Index};
 
 #[cfg(feature = "fontations")]
+pub use fontations::read::FontRef; // Re-export our types for users
+#[cfg(feature = "fontations")]
 use fontations::skrifa::string::StringId;
 #[cfg(feature = "fontations")]
 use fontations::{
-    read::FontRef,
     read::{ReadError, TableProvider},
     write::FontBuilder,
 };
