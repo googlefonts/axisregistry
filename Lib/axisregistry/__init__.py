@@ -13,6 +13,8 @@ import logging
 from glob import glob
 from importlib.resources import files
 import os
+from axisregistry.greendot import green_dot
+
 
 try:
     from ._version import version as __version__  # type: ignore
@@ -113,11 +115,25 @@ class AxisRegistry:
             if axis not in self.keys():
                 log.warning(f"Axis {axis} not found in GF Axis Registry!")
                 continue
+            if axis == "opsz":
+                opsz_sizes = green_dot(
+                    axes_in_font[axis]["min"], axes_in_font[axis]["max"]
+                )
+                # add min and max (Rosa request)
+                opsz_sizes += (
+                    [axes_in_font[axis]["min"]]
+                    + opsz_sizes
+                    + [axes_in_font[axis]["max"]]
+                )
+            else:
+                opsz_sizes = []
             for fallback in self[axis].fallback:
                 if (
                     fallback.value < axes_in_font[axis]["min"]
                     or fallback.value > axes_in_font[axis]["max"]
                 ):
+                    continue
+                if axis == "opsz" and fallback.value not in opsz_sizes:
                     continue
                 res[axis].append(fallback)
         return res
